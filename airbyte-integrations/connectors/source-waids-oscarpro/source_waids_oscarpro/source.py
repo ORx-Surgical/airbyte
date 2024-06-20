@@ -45,12 +45,12 @@ class WaidsOscarproStream(HttpStream, ABC):
         - GET v1/employees
 
     then you should have three classes:
-    `class WaidsOscarproStream(config)(HttpStream, ABC)` which is the current class
-    `class Customers(WaidsOscarproStream(config))` contains behavior to pull data for customers using v1/customers
-    `class Employees(WaidsOscarproStream(config))` contains behavior to pull data for employees using v1/employees
+    `class WaidsOscarproStream(HttpStream, ABC)` which is the current class
+    `class Customers(WaidsOscarproStream)` contains behavior to pull data for customers using v1/customers
+    `class Employees(WaidsOscarproStream)` contains behavior to pull data for employees using v1/employees
 
     If some streams implement incremental sync, it is typical to create another class
-    `class IncrementalWaidsOscarproStream(config)((WaidsOscarproStream(config)), ABC)` then have concrete stream implementations extend it. An example
+    `class IncrementalWaidsOscarproStream((WaidsOscarproStream), ABC)` then have concrete stream implementations extend it. An example
     is provided below.
 
     See the reference docs for the full list of configurable options.
