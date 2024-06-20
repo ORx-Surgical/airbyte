@@ -1,7 +1,17 @@
 {
   "url_base": "URL BASE",
+  "app_id": "APP ID",
+
+  "session_token_url": "SESSION TOKEN URL",
+  "access_token_url": "ACCESS TOKEN URL",
+
+  "clinic_id": "CLINIC ID",
+  "clinic_secret": "CLINIC SECRET",
+  "clinic_redirect_uri": "CLINIC REDIRECT URI",
+  "oscar_pro_aud": "OSCAR PRO AUD",
+  "oscar_pro_authorization_url": "OSCAR PRO AUTHORIZATION URL",
+  "oscar_pro_token_url": "OSCAR PRO TOKEN URL",
+
   "username": "USERNAME",
-  "password": "PASSWORD",
-  "web_username": "WEB_USERNAME",
-  "web_password": "WEB_PASSWORD"
+  "password": "PASSWORD"
 }

@@ -5,7 +5,10 @@
 from setuptools import find_packages, setup
 
 ## These requirements are from QHR, we might have something similar
-# MAIN_REQUIREMENTS = [
+MAIN_REQUIREMENTS = [
+    "airbyte-cdk",
+    "beautifulsoup4",
+
 #     "airbyte-cdk~=0.2",
 #     "azure-keyvault-secrets",
 #     "azure-identity",
@@ -13,14 +16,17 @@ from setuptools import find_packages, setup
 #     "docker",
 #     "pyodbc",
 #     "kubernetes"
-# ]
+]
 
-# TEST_REQUIREMENTS = [
+TEST_REQUIREMENTS = [
+    "airbyte-cdk",
+    "pytest",
+
 #     "requests-mock~=1.9.3",
 #     "pytest-mock~=3.6.1",
 #     "pytest~=6.2",
 #     "connector-acceptance-test",
-# ]
+]
 
 setup(
     entry_points={
@@ -33,11 +39,10 @@ setup(
     author="Airbyte",
     author_email="contact@airbyte.io",
     packages=find_packages(),
-    install_requires=["airbyte-cdk", "pytest"],
-    # install_requires=MAIN_REQUIREMENTS,
-    # extras_require={
-    #     "tests": TEST_REQUIREMENTS,
-    # },
+    install_requires=MAIN_REQUIREMENTS,    
+    extras_require={
+        "tests": TEST_REQUIREMENTS,
+    },
     package_data={
         "": [
             # Include yaml files in the package (if any)

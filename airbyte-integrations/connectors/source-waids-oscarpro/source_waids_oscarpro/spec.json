@@ -1,0 +1,114 @@
+{
+  "documentationUrl": "https://github.com/ORx-Surgical/airbyte/tree/master/airbyte-integrations/connectors/source-waids-oscarpro",
+  "connectionSpecification": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Waids Oscarpro Spec",
+    "type": "object",
+    "required": [
+      "url_base",
+      "app_id",
+
+      "session_token_url",
+      "access_token_url",
+
+      "clinic_id",
+      "clinic_secret",
+      "clinic_redirect_uri",
+      "oscar_pro_aud",
+
+      "oscar_pro_authorization_url",
+      "oscar_pro_token_url",
+
+      "username",
+      "password"
+    ],
+    "properties": {
+      "url_base": {
+        "title": "URL Base",
+        "type": "string",
+        "description": "The full URL for the Oscar Pro instance to connect to",
+        "group": "connection"
+      },
+      "app_id": {
+        "title": "APP Id",
+        "type": "string",
+        "description": "The App ID instance of Oscar Pro",
+        "group": "connection"
+      },
+
+      "session_token_url": {
+        "title": "Session Token URL",
+        "type": "string",
+        "description": "The Session Token URL needed to retrieve session tokens",
+        "group": "session_token"
+      },
+      "access_token_url": {
+        "title": "Access Token URL",
+        "type": "string",
+        "description": "The Access Token URL needed to retrieve access tokens",
+        "group": "access_token"
+      },
+
+      "clinic_id": {
+        "title": "Clinic ID",
+        "type": "string",
+        "description": "The Clinic ID configured assigned in Oscar Pro",
+        "group": "clinic_settings"
+      },
+      "clinic_secret": {
+        "title": "Clinic Secret",
+        "airbyte-secret": true,
+        "type": "string",
+        "description": "The Clinic secret configured in Oscar Pro",
+        "group": "clinic_settings"
+      },
+      "clinic_redirect_uri": {
+        "title": "Clinic Redirect URI",
+        "type": "string",
+        "description": "The username for the Oscar Pro OAuth user",
+        "group": "clinic_settings"
+      },
+      "oscar_pro_aud": {
+        "title": "Oscar Pro Audience",
+        "type": "string",
+        "description": "The audience value needed for Oscar Pro authentication",
+        "group": "clinic_settings"
+      },
+      "oscar_pro_authorization_url": {
+        "title": "Oscar Pro Authorization URL",
+        "type": "string",
+        "description": "The Authorization URL for Oscar Pro",
+        "group": "clinic_settings"
+      },
+      "oscar_pro_token_url": {
+        "title": "Oscar Pro Token URL",
+        "type": "string",
+        "description": "The Token URL for Oscar Pro",
+        "group": "clinic_settings"
+      },
+
+      "username": {
+        "title": "Username",
+        "type": "string",
+        "description": "The username for the Oscar Pro OAuth user",
+        "group": "oscarpro"
+      },
+      "password": {
+        "title": "Password",
+        "airbyte-secret": true,
+        "type": "string",
+        "description": "The password for the Oscar Pro OAuth user",
+        "group": "oscarpro"
+      }
+    },
+    "groups": [
+      { "id": "connection", "title": "Connection Settings" },
+      { "id": "session_token", "title": "Session Token Settings" },
+      { "id": "access_token", "title": "Access Token Settings" },
+
+      { "id": "clinic_settings", "title": "Clinic Settings for Oscar Pro" },
+
+      { "id": "oscarpro", "title": "Oscar Pro Connection Settings" }
+    ]
+  }
+}

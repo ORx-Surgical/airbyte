@@ -17,6 +17,7 @@ packages = [ { include = "source_waids_oscarpro" }, {include = "main.py" } ]
 [tool.poetry.dependencies]
 python = "^3.9,<3.12"
 airbyte-cdk = "^0"
+beautifulsoup4 = "^4.12.3"
 
 [tool.poetry.scripts]
 source-waids-oscarpro = "source_waids_oscarpro.run:run"

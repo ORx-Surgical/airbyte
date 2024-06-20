@@ -2,6 +2,7 @@
 # Copyright (c) 2024 Airbyte, Inc., all rights reserved.
 #
 
+from .oscar_pro_authentication import OscarProAuthentication
 
 from abc import ABC
 from typing import Any, Iterable, List, Mapping, MutableMapping, Optional, Tuple
@@ -57,12 +58,10 @@ class WaidsOscarproStream(HttpStream, ABC):
     
     url_base = None
 
+    # Configure url_base from Configs - https://github.com/airbytehq/airbyte/issues/10903
     def __init__(self, config: Mapping[str, Any], **kwargs):
-        """
-        Configure some base variables from the Config
-        TODO: REMOVE -- but for reference https://github.com/airbytehq/airbyte/issues/10903
-        """
-        WaidsOscarproStream.url_base = config['url_base']
+        super().__init__(**kwargs)
+        WaidsOscarproStream.url_base = config['url_base']        
 
     def next_page_token(self, response: requests.Response) -> Optional[Mapping[str, Any]]:
         """
@@ -184,7 +183,7 @@ class Employees(IncrementalWaidsOscarproStream):
         the date query param.
         """
         raise NotImplementedError("Implement stream slices or delete this method!")
-
+    
 
 # Source
 class SourceWaidsOscarpro(AbstractSource):
@@ -209,8 +208,8 @@ class SourceWaidsOscarpro(AbstractSource):
         """
         # TODO remove the authenticator if not required.
 
-        # TODO --> The values needed for Authentication are on the config var
-
-
-        auth = TokenAuthenticator(token="api_key")  # Oauth2Authenticator is also available if you need oauth support
-        return [Customers(authenticator=auth), Employees(authenticator=auth)]
+        oscar_pro_authentication = OscarProAuthentication(config)
+        token = oscar_pro_authentication.get_access_token()
+        auth = TokenAuthenticator(token)  # Oauth2Authenticator is also available if you need oauth support
+        
+        return [Customers(config=config, authenticator=auth), Employees(config=config, authenticator=auth)]
